@@ -3,9 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>g, 2025</title>
   </head>
   <body>
+    <ul></ul>
+    <ul></ul>
     <ul></ul>
     <p>
       <em>— g, burkina faso, 2025</em><br />
@@ -16,20 +18,48 @@
       >
     </p>
     <script>
-      let i = 1;
       const c = new Date().getFullYear();
+      const uls = document.querySelectorAll('ul');
+
+      let i = 1;
       while (i * i <= c) {
-        document.querySelector('ul').innerHTML += `<li>
+        uls[0].innerHTML += `<li>
                 ${i * i === c ? '<strong>' : ''}
                 ${i} &times; ${i} = ${i * i}
                 ${i * i === c ? '</strong>' : ''}
             </li>`;
         i++;
       }
-      i--;
-      document.querySelector('title').innerHTML = `${i} &times; ${i} = ${
-        i * i
-      }`;
+
+      i = 1;
+      let elms = [];
+      while (elms.map((e) => e ** 3).reduce((sum, a) => sum + a, 0) < c) {
+        elms.push(i);
+        const res = elms.map((e) => e ** 3).reduce((sum, a) => sum + a, 0);
+        const eq = elms.map((e) => `${e}<sup>3</sup>`).join(' + ');
+        uls[1].innerHTML += `<li>
+                ${res === c ? '<strong>' : ''}
+                ${eq} = ${res}
+                ${res === c ? '</strong>' : ''}
+            </li>`;
+        i++;
+      }
+
+      i = 1;
+      elms = [];
+      while (elms.reduce((sum, a) => sum + a, 0) ** 2 < c) {
+        elms.push(i);
+        const res = elms.reduce((sum, a) => sum + a, 0) ** 2;
+        const eq =
+          (elms.length > 1 ? `(${elms.join(' + ')})` : elms[0]) +
+          '<sup>2</sup>';
+        uls[2].innerHTML += `<li>
+                ${res === c ? '<strong>' : ''}
+                ${eq} = ${res}
+                ${res === c ? '</strong>' : ''}
+            </li>`;
+        i++;
+      }
     </script>
   </body>
 </html>
