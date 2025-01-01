@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul></ul>
+    <p><em>— g, 2025</em></p>
+    <script>
+      let i = 1;
+      const c = new Date().getFullYear();
+      while (i * i <= c) {
+        document.querySelector('ul').innerHTML += `<li>
+                ${i * i === c ? '<strong>' : ''}
+                ${i} &times; ${i} = ${i * i}
+                ${i * i === c ? '</strong>' : ''}
+            </li>`;
+        i++;
+      }
+      i--;
+      document.querySelector('title').innerHTML = `${i} &times; ${i} = ${
+        i * i
+      }`;
+    </script>
+  </body>
+</html>
